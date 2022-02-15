@@ -1,0 +1,2 @@
+We remove an item from the cheese_list every time the Mouse's (X, Y) cordinates are equal to a cheese's (X, Y) cordinates.
+Our goal_test() function checks our cheese_list, and if cheese_list is empty, we return true, otherwise return false.
