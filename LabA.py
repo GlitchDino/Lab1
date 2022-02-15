@@ -2,7 +2,8 @@ from posixpath import split
 import numpy as np
 class Mouse:
     mouse_pos=(0,0)
-    cheese_location=[]
+    cheese_locations=[]
+    maze_arr=[]
 
     def print_maze(self, file):
         read_file=open(file, "r")
@@ -12,32 +13,33 @@ class Mouse:
         for line in lines:
             print(line)
 
-    def init_maze(self, file):
+    def init_maze(self, file): #initilizes maze into 2d array, gets (x, y) position of mouse and all cheeses.
         read_file=open(file, "r")
         lines=read_file.readlines()
         width=len(lines[0])-1 #-1 for new line
         height=len(lines)
-        print("Width of maze: "+str(width)+" Height of maze: "+str(height))
-        maze_arr=[]
         row_index=0
+        print("Width of maze: "+str(width)+" Height of maze: "+str(height))
+       
+        
 
-        for line in lines:
-            row=[]
+        for line in lines: #Creates 2D array for maze
             split_str=line.split("\n")
-            row.append(list(split_str[0]))
-            maze_arr.append(row)
-            if "." in row:
-                print("WOOP")
-            #for character in row:
-            #    if character=='.':
-            #        print("CHEESE FOUND!!!")
+            self.maze_arr.append(list(split_str[0]))
+
+
+        for lists in self.maze_arr: #finds location of mouse and cheese
+            for item in lists:
+                if(item=="."):
+                    print("CHEESE FOUND!!!")
+                    cheese_location=(lists.index(item), row_index)
+                    self.cheese_locations.append(cheese_location)
+                if(item=="P"):
+                    print("MOUSE FOUND!!!")
+                    self.mouse_pos=(lists.index(item), row_index)
             row_index+=1
-        numpy_maze = np.array(maze_arr)
-        mouse_location=np.where(numpy_maze=="P")
-        cheese_location=np.where(numpy_maze==".") #Only manages location of 1 cheese
-        print(mouse_location)
-        self.mouse_pos=(mouse_location[0][0], mouse_location[2][0])
-        print(self.mouse_pos)
+
+        print("Mouse: "+str(self.mouse_pos))
         print(cheese_location)
 
 test=Mouse()
