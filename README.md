@@ -1,6 +1,6 @@
-#Lab A - Part 1  
+# Lab A - Part 1  
 *Egan White and Katrina Ziebarth*  
- ##LabA.py  
+## LabA.py  
 This file contains all of our code for part 1 of the lab. The classes, functions, and methods are as follows. All are contained within the class Mouse:  
 **Mouse class**  
 	An overarching class which contains all functions and all other classes. It stores a representation of the maze.  
